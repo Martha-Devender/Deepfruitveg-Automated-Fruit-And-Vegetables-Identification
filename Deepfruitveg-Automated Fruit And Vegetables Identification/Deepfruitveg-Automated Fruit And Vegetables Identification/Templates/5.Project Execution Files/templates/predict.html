@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruits and Vegetables Classifier - Predict</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: #000;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+        }
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .video-background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            z-index: 0;
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+            margin-top: 20vh;
+        }
+        h1 {
+            font-size: 3.5em;
+            color: #ffcc00;
+            text-shadow: 0 0 20px #ffcc00, 0 0 40px #ff6600;
+            animation: glow 2s infinite alternate;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            display: block;
+            color: #fff;
+            text-shadow: 0 0 15px #00ffff, 0 0 30px #00ccff;
+        }
+        input[type="file"] {
+            margin-bottom: 25px;
+            font-size: 1.2em;
+            padding: 10px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background: linear-gradient(45deg, #00ffff, #00ccff);
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
+        }
+        input[type="submit"]:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.9);
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #ffcc00, 0 0 20px #ff6600;
+            }
+            to {
+                text-shadow: 0 0 20px #ff6600, 0 0 40px #ffcc00;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="static/assets/img/bgp.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="container">
+        <h1>Fruits and Vegetables Classifier</h1>
+        <form action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data">
+            <label for="image">Choose an image to predict:</label>
+            <input type="file" name="image" id="image" required>
+            <br>
+            <input type="submit" value="Predict">
+        </form>
+    </div>
+</body>
+</html>

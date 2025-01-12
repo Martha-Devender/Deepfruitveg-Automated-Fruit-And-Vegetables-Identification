@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: url('static/assets/img/output.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #ff6600;
+            text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffa500;
+            animation: glow 1.5s infinite alternate;
+        }
+        p {
+            font-size: 1.5em;
+            color: #333;
+            margin: 15px 0;
+        }
+        strong {
+            color: #ff0000;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #fff;
+            background: linear-gradient(45deg, #00ff99, #00cc66);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 255, 153, 0.7);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0, 255, 153, 0.9);
+        }
+        .back-arrow {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 2.5em;
+            color: #fff;
+            text-shadow: 0 0 10px #00ffcc, 0 0 20px #0099cc;
+            background: none; /* Remove background box */
+            border: none; /* Remove border */
+            cursor: pointer;
+            transition: transform 0.3s ease, text-shadow 0.3s ease;
+        }
+        .back-arrow:hover {
+            transform: scale(1.2);
+            text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffff;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffa500;
+            }
+            to {
+                text-shadow: 0 0 20px #ff9900, 0 0 40px #ff4500;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Updated back arrow to blend seamlessly -->
+    <a href="{{ url_for('home') }}" class="back-arrow">⬅</a>
+    <div class="container">
+        <h1>Prediction Result</h1>
+        <p>The predicted item is: <strong>{{ prediction }}</strong></p>
+        <p>This is: <strong>{{ 'Fruit' if prediction in ['Apple', 'Banana', 'Orange', 'Mango', 'Watermelon'] else 'Vegetable' }}</strong></p>
+        <!-- Redirect to the prediction page for a new prediction -->
+        <a href="/predict">Make Another Prediction</a>
+    </div>
+</body>
+</html>
